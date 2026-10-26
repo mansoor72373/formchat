@@ -4,6 +4,8 @@ Build conversational forms, embed a chatbot widget on any website, and manage re
 
 **Flow:** create a form → publish it → paste one `<script>` tag on any site → visitors answer in a chat → read submissions in the dashboard.
 
+**Live app:** <https://formchat-nine.vercel.app> · **API docs:** <https://formchat-nine.vercel.app/api-docs>
+
 ## Stack
 
 | Concern    | Choice                                                                          |
@@ -21,7 +23,7 @@ Build conversational forms, embed a chatbot widget on any website, and manage re
 Requirements: Node 18.18+, Docker (or any PostgreSQL 14+).
 
 ```bash
-git clone <your-repo-url> formchat && cd formchat
+git clone https://github.com/mansoor72373/formchat.git formchat && cd formchat
 npm install
 
 cp .env.example .env.local        # then set AUTH_SECRET (openssl rand -base64 32)
@@ -122,7 +124,7 @@ using `privateRoute`/`publicRoute`, and a `registerPath` entry in `lib/openapi/p
 ## Embedding the widget
 
 ```html
-<script src="https://YOUR-APP/widget.js" data-form="FORM_SLUG" async></script>
+<script src="https://formchat-nine.vercel.app/widget.js" data-form="FORM_SLUG" async></script>
 ```
 
 - Renders a floating bubble (bottom-right) in the form's colour. The chat loads lazily in an iframe on first click, so it can't clash with the host site's CSS and costs nothing until opened.
@@ -136,6 +138,8 @@ using `privateRoute`/`publicRoute`, and a `registerPath` entry in `lib/openapi/p
 2. Run migrations once against it: `DATABASE_URL=… npm run db:migrate`.
 3. Import the GitHub repo in Vercel and set `DATABASE_URL`, `PGSSL`, `AUTH_SECRET`, `NEXT_PUBLIC_APP_URL` (your final URL).
 4. Deploy. Embed snippets and share links use the real origin automatically.
+
+The current deployment lives at <https://formchat-nine.vercel.app>.
 
 ## Security notes
 
