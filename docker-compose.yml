@@ -1,0 +1,12 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: formchat
+      POSTGRES_PASSWORD: formchat
+      POSTGRES_DB: formchat
+    ports: ['5432:5432']
+    volumes: [pgdata:/var/lib/postgresql/data]
+volumes:
+  pgdata:

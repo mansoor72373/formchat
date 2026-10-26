@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Acme Bakery – test website</title>
+  <style>
+    body{font-family:system-ui,sans-serif;margin:0;color:#222;background:#fdf8f3}
+    header{padding:48px 24px;text-align:center;background:#f3e3d0}
+    main{max-width:640px;margin:0 auto;padding:32px 24px;line-height:1.6}
+    code{background:#eee;padding:2px 6px;border-radius:4px}
+  </style>
+</head>
+<body>
+  <header><h1>Acme Bakery</h1><p>A pretend external website for testing the FormChat widget.</p></header>
+  <main>
+    <h2>How to test</h2>
+    <p>Open this page as <code>/test-site.html?form=YOUR_FORM_SLUG</code>. The chat bubble appears bottom-right.</p>
+    <p>In a real site you paste one line before <code>&lt;/body&gt;</code>:</p>
+    <pre><code>&lt;script src="https://YOUR-APP/widget.js" data-form="YOUR_FORM_SLUG" async&gt;&lt;/script&gt;</code></pre>
+    <p id="status"></p>
+  </main>
+  <script>
+    var slug = new URLSearchParams(location.search).get('form');
+    if (!slug) {
+      document.getElementById('status').textContent = 'Add ?form=YOUR_FORM_SLUG to the URL to load the widget.';
+    } else {
+      var s = document.createElement('script');
+      s.src = '/widget.js'; s.async = true; s.setAttribute('data-form', slug);
+      document.body.appendChild(s);
+    }
+  </script>
+</body>
+</html>
